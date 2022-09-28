@@ -62,6 +62,7 @@ export default function App() {
           return <Item name={item.name} shop={item.shop} img={item.img} />;
         }}
       />
+      <StatusBar hidden={true} />
     </SafeAreaView>
   );
 }
