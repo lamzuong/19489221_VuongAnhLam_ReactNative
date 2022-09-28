@@ -6,8 +6,12 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
-export default function MainScreen({ route, navigation }) {
+export default function MainScreen() {
+  const navigation = useNavigation();
+  const route = useRoute();
   const { colorSelected } = route.params;
   return (
     <SafeAreaView style={styles.container}>
