@@ -38,36 +38,52 @@ export default function App() {
       <FlatList
         style={{ marginTop: 10 }}
         data={flatListData}
+        // renderItem={({ item, index }) => {
+        // return (
+        //   <TouchableOpacity style={styles.item}>
+        //     <View style={{ flexDirection: "row" }}>
+        //       <View style={{ marginRight: 20 }}>
+        //         <Image source={{ uri: item.img }} style={styles.image} />
+        //       </View>
+        //       <View>
+        //         <Text>{item.name}</Text>
+        //         <Text style={{ color: "grey" }}>
+        //           Shop <Text style={{ color: "black" }}> {item.shop}</Text>
+        //         </Text>
+        //       </View>
+        //     </View>
+        //     <TouchableOpacity style={styles.btnChat}>
+        //       <Text style={styles.txtChat}>Chat</Text>
+        //     </TouchableOpacity>
+        //   </TouchableOpacity>
+        // );
+        // }}
         renderItem={({ item, index }) => {
-          return (
-            <TouchableOpacity style={styles.item}>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ marginRight: 20 }}>
-                  <Image source={{ uri: item.img }} style={styles.image} />
-                </View>
-                <View>
-                  <Text>{item.name}</Text>
-                  <Text style={{ color: "grey" }}>
-                    Shop <Text style={{ color: "black" }}> {item.shop}</Text>
-                  </Text>
-                </View>
-              </View>
-
-              <TouchableOpacity style={styles.btnChat}>
-                <Text style={styles.txtChat}>Chat</Text>
-              </TouchableOpacity>
-            </TouchableOpacity>
-          );
+          return <Item name={item.name} shop={item.shop} img={item.img} />;
         }}
       />
     </SafeAreaView>
   );
 }
-const Item = ({ item }) => {
+const Item = ({ name, shop, img }) => {
   return (
-    <View>
-      <Text>{item.name}</Text>
-    </View>
+    <TouchableOpacity style={styles.item}>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ marginRight: 20 }}>
+          <Image source={{ uri: img }} style={styles.image} />
+        </View>
+        <View>
+          <Text>{name}</Text>
+          <Text style={{ color: "grey" }}>
+            Shop <Text style={{ color: "black" }}> {shop}</Text>
+          </Text>
+        </View>
+      </View>
+
+      <TouchableOpacity style={styles.btnChat}>
+        <Text style={styles.txtChat}>Chat</Text>
+      </TouchableOpacity>
+    </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
