@@ -6,22 +6,23 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 
 export default function MainScreen() {
+  const [colorPhone, setColorPhone] = useState(
+    require("../assets/vs_blue.png")
+  );
   const navigation = useNavigation();
   const route = useRoute();
-  const { colorSelected } = route.params;
+  useEffect(() => {
+    if (route.params != null) setColorPhone(route.params.colorSelected);
+  });
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.viewImgProduct}>
-        <Image
-          source={
-            colorSelected ? colorSelected : require("../assets/vs_blue.png")
-          }
-          style={styles.imgProduct}
-        />
+        <Image source={colorPhone} style={styles.imgProduct} />
       </View>
       <Text style={{ fontSize: 16, marginLeft: 20 }}>
         Điện Thoại Vsmart Joy 3 - Hàng chính hãng

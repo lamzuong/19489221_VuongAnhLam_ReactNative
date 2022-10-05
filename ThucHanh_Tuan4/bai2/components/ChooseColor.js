@@ -11,48 +11,82 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function ChooseColor() {
   const navigation = useNavigation();
-  const blue = require("../assets/vs_blue.png");
-  const red = require("../assets/vs_red.png");
-  const silver = require("../assets/vs_silver.png");
-  const black = require("../assets/vs_black.png");
-  const colors = { red, blue, silver, black };
-  const [select, setSelected] = useState(colors.blue);
+  const obj = [
+    {
+      color: "Bạc",
+      provider: "Tiki Trading",
+      price: "1.790.000 đ",
+      colorShow: require("../assets/vs_silver.png"),
+    },
+    {
+      color: "Đỏ",
+      provider: "Tiki Trading",
+      price: "1.790.000 đ",
+      colorShow: require("../assets/vs_red.png"),
+    },
+    {
+      color: "Đen",
+      provider: "Tiki Trading",
+      price: "1.790.000 đ",
+      colorShow: require("../assets/vs_black.png"),
+    },
+    {
+      color: "Xanh",
+      provider: "Tiki Trading",
+      price: "1.790.000 đ",
+      colorShow: require("../assets/vs_blue.png"),
+    },
+  ];
+  const [selectColor, setSelectedColor] = useState(obj[3].color);
+  const [selectProvider, setSelectedProvider] = useState(obj[3].provider);
+  const [selectPrice, setSelectedPrice] = useState(obj[3].price);
+  const [selectColorShow, setSelectedColorShow] = useState(obj[3].colorShow);
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.viewHeader}>
-          <Image source={select} style={styles.imgProduct} />
+          <Image source={selectColorShow} style={styles.imgProduct} />
           <View style={{ marginTop: 10, marginLeft: 10 }}>
             <Text>Điện Thoại Vsmart Joy 3</Text>
             <Text>Hàng chính hãng</Text>
+            <Text style={{ marginTop: 10 }}>
+              Màu: <Text style={{ fontWeight: "bold" }}>{selectColor}</Text>
+            </Text>
+            <Text style={{ marginTop: 10 }}>
+              Cung cấp bởi{" "}
+              <Text style={{ fontWeight: "bold" }}>{selectProvider}</Text>
+            </Text>
+            <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+              {selectPrice}
+            </Text>
           </View>
         </View>
         <View style={styles.viewFooter}>
           <TouchableOpacity
             onPress={() => {
-              setSelected(colors.silver);
+              setAll(0);
             }}
           >
             <View style={[styles.color, { backgroundColor: "#C5F1FB" }]}></View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setSelected(colors.red);
+              setAll(1);
             }}
           >
             <View style={[styles.color, { backgroundColor: "red" }]}></View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setSelected(colors.black);
+              setAll(2);
             }}
           >
             <View style={[styles.color, { backgroundColor: "black" }]}></View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setSelected(colors.blue);
+              setAll(3);
             }}
           >
             <View style={[styles.color, { backgroundColor: "blue" }]}></View>
@@ -63,7 +97,7 @@ export default function ChooseColor() {
             style={styles.buttonChoose}
             onPress={() =>
               navigation.navigate("MainScreen", {
-                colorSelected: select,
+                colorSelected: selectColorShow,
               })
             }
           >
@@ -75,6 +109,12 @@ export default function ChooseColor() {
       </ScrollView>
     </View>
   );
+  function setAll(index) {
+    setSelectedColor(obj[index].color);
+    setSelectedProvider(obj[index].provider);
+    setSelectedPrice(obj[index].price);
+    setSelectedColorShow(obj[index].colorShow);
+  }
 }
 const styles = StyleSheet.create({
   container: {
