@@ -56,7 +56,6 @@ export default function App() {
         keyExtractor={(item, index) => index}
         numColumns={2}
       />
-      <StatusBar animated={true} backgroundColor="#61dafb" hidden={true} />
     </View>
   );
 }
